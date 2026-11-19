@@ -21,3 +21,18 @@ asroot = string : program that runs as root (default sudo, doas works)
 
 ## notes
 I first tried this in wayland with xwayland, I think It's work well in xwayland.
+
+## Windows
+
+`herbed-tiramisu.ps1` is the port: it needs `tiramisu.exe` (C or Odin port,
+branches `port/c-msvc` / `port/odin` of the tiramisu fork) and `herbe.exe`
+(`port/windows` of the herbe fork), both on `PATH` or passed explicitly:
+
+```powershell
+.\herbed-tiramisu.ps1 -Tiramisu .\tiramisu.exe -Herbe .\herbe.exe -ShowBody
+notify-send -t 4000 -a Firefox "Download complete" "photo.png"
+```
+
+Fixed on the way (see the comment block in the script): the bash version
+executed each tiramisu line as shell code, passed millisecond timeouts to
+`timeout` as seconds and failed outright on the default timeout `-1`.
